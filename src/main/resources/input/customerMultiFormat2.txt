@@ -1,0 +1,6 @@
+CUST,Clement,A,Blair,9247 Infinite Loop Drive,Hollywood,NE,37612
+TRANS,8116369,2011-01-21 16:51:59,98.53
+CUST,Chana,B,Meyer,8875 Farnam Street,Aurora,IL,36314
+TRANS,8116369,2011-01-21 16:51:59,98.53
+CUST,Kay,C,Quinonez,8875 Farnam Street,Aurora,IL,36314
+TRANS,8116369,2011-01-21 16:51:59,98.53
