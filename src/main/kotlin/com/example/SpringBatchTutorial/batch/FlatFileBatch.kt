@@ -37,18 +37,18 @@ class FlatFileBatch {
     lateinit var stepBuilderFactory: StepBuilderFactory
 
     @Bean
-    fun job(): Job {
+    fun flatFileBatchJob(): Job {
         return this.jobBuilderFactory.get("FlatFileBatchJob")
-            .start(copyFileStep())
+            .start(copyFlatFileStep())
             .build()
     }
 
     @Bean
-    fun copyFileStep(): Step {
-        return this.stepBuilderFactory.get("copyFileStep")
+    fun copyFlatFileStep(): Step {
+        return this.stepBuilderFactory.get("copyFlatFileStep")
             .chunk<Any, Customer>(10)
             .reader(multiCustomerReader(null))
-            .writer(itemWriter())
+            .writer(flatFileItemWriter())
             .build()
     }
 
@@ -227,7 +227,7 @@ class FlatFileBatch {
     }
 
     @Bean
-    fun itemWriter(): ItemWriter<Any> {
+    fun flatFileItemWriter(): ItemWriter<Any> {
         return ItemWriter { items: List<Any> ->
             items.forEach { println(it) }
         }

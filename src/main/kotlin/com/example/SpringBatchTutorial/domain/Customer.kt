@@ -1,5 +1,9 @@
 package com.example.SpringBatchTutorial.domain
 
+import javax.xml.bind.annotation.*
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 data class Customer(
     var firstName: String = "",
     var middleInitial: String = "",
@@ -8,6 +12,8 @@ data class Customer(
     var city: String = "",
     var state: String = "",
     var zipCode: String = "",
+    @XmlElementWrapper(name = "transactions")
+    @XmlElement(name = "transaction")
     var transactions: MutableList<Transaction> = mutableListOf()
 ) {
     override fun toString(): String {

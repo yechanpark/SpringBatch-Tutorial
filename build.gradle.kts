@@ -22,6 +22,19 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.batch:spring-batch-test")
+
+	// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+	implementation("javax.xml.bind:jaxb-api:2.3.1")
+
+	// https://mvnrepository.com/artifact/org.springframework/spring-oxm
+	implementation("org.springframework:spring-oxm:5.3.9")
+
+	// https://mvnrepository.com/artifact/javax.activation/activation
+	implementation("javax.activation:activation:1.1")
+
+	// https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
+	implementation("org.glassfish.jaxb:jaxb-runtime:2.3.1")
+
 }
 
 tasks.withType<KotlinCompile> {
