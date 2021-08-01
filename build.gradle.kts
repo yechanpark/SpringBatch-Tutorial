@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "2.5.2"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
+	id("org.jetbrains.kotlin.plugin.noarg") version "1.5.21"
 	kotlin("jvm") version "1.5.20"
 	kotlin("plugin.spring") version "1.5.20"
 }
@@ -35,6 +36,11 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
 	implementation("org.glassfish.jaxb:jaxb-runtime:2.3.1")
 
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	implementation("mysql:mysql-connector-java:8.0.26")
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.3")
 }
 
 tasks.withType<KotlinCompile> {
