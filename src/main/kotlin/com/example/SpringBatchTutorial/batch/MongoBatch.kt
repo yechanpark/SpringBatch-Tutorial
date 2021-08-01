@@ -1,5 +1,7 @@
 package com.example.SpringBatchTutorial.batch
 
+import com.fasterxml.jackson.core.type.TypeReference
+import net.bytebuddy.description.method.MethodDescription
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.configuration.annotation.*
@@ -35,7 +37,7 @@ class MongoBatch {
     @Bean
     fun copyMongoStep(): Step {
         return this.stepBuilderFactory.get("copyMongoStep")
-            .chunk<Map, Map>(1)
+            .chunk<Map<Any, Any>, Map<Any, Any>>(1)
             .reader(tweetsItemReader(null, null))
             .writer(mongoItemWriter())
             .build()
@@ -49,7 +51,7 @@ class MongoBatch {
     ): MongoItemReader<Map<Any, Any>> {
         return MongoItemReaderBuilder<Map<Any, Any>>()
             .name("tweetsItemReader")
-                .targetType(Map::class.java)
+                .targetType(mapOf<Any, Any>()::class.java)
                 .jsonQuery("{ \"entities.hashtags.text\": {\$eq: ?0}}")
                 .collection("tweets_collection")
                 .parameterValues(Collections.singletonList(hashTag) as List<Any>)
@@ -60,8 +62,8 @@ class MongoBatch {
     }
 
     @Bean
-    fun mongoItemWriter(): ItemWriter<Map> {
-        return ItemWriter { items: List<Map> ->
+    fun mongoItemWriter(): ItemWriter<Map<Any, Any>> {
+        return ItemWriter { items: List<Map<Any, Any>> ->
             items.forEach { println(it) }
         }
     }
