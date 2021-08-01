@@ -1,7 +1,7 @@
 spring:
   batch:
     job:
-      names: JdbcPagingBatch
+      names: HibernatePagingJob
     jdbc:
       initialize-schema: always
   datasource:
