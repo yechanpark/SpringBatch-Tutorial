@@ -1,7 +1,5 @@
 package com.example.SpringBatchTutorial.batch
 
-import com.fasterxml.jackson.core.type.TypeReference
-import net.bytebuddy.description.method.MethodDescription
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.configuration.annotation.*
@@ -15,6 +13,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.MongoTemplate
 import java.util.*
+import kotlin.collections.HashMap
 
 
 @Configuration
@@ -48,10 +47,10 @@ class MongoBatch {
     fun tweetsItemReader(
         mongoTemplate: MongoTemplate?,
         @Value("#{jobParameters['hashTag']}") hashTag: String?
-    ): MongoItemReader<Map<Any, Any>> {
-        return MongoItemReaderBuilder<Map<Any, Any>>()
+    ): MongoItemReader<HashMap<Any, Any>> {
+        return MongoItemReaderBuilder<HashMap<Any, Any>>()
             .name("tweetsItemReader")
-                .targetType(mapOf<Any, Any>()::class.java)
+                .targetType(hashMapOf<Any, Any>()::class.java)
                 .jsonQuery("{ \"entities.hashtags.text\": {\$eq: ?0}}")
                 .collection("tweets_collection")
                 .parameterValues(Collections.singletonList(hashTag) as List<Any>)
