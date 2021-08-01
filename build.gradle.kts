@@ -43,6 +43,10 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.3")
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.5.3")
+
 }
 
 tasks.withType<KotlinCompile> {
