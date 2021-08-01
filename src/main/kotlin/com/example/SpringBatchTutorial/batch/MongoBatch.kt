@@ -50,14 +50,21 @@ class MongoBatch {
     ): MongoItemReader<HashMap<Any, Any>> {
         return MongoItemReaderBuilder<HashMap<Any, Any>>()
             .name("tweetsItemReader")
-                .targetType(hashMapOf<Any, Any>()::class.java)
-                .jsonQuery("{ \"entities.hashtags.text\": {\$eq: ?0}}")
-                .collection("tweets_collection")
-                .parameterValues(Collections.singletonList(hashTag) as List<Any>)
-                .pageSize(1)
-                .sorts(Collections.singletonMap("created_at", Sort.Direction.ASC))
-                .template(mongoTemplate!!)
-                .build()
+            .targetType(hashMapOf<Any, Any>()::class.java)
+            //.jsonQuery("{ \"entities.hashtags.text\": {\$eq: ?0}}")
+            .jsonQuery("""
+                {
+                    "entities.hashtags.text": {
+                        ${'$'}eq: ?0
+                    }
+                }
+            """)
+            .collection("tweets_collection")
+            .parameterValues(Collections.singletonList(hashTag) as List<Any>)
+            .pageSize(1)
+            .sorts(Collections.singletonMap("created_at", Sort.Direction.ASC))
+            .template(mongoTemplate!!)
+            .build()
     }
 
     @Bean
