@@ -1,7 +1,7 @@
 spring:
   batch:
     job:
-      names: CustomReaderJob
+      names: JdbcCursorListenerJob
     jdbc:
       initialize-schema: always
   datasource:
